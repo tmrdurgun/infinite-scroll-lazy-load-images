@@ -1,0 +1,62 @@
+@import '../../../styles/variables.scss';
+
+.product {
+    width: 100%;
+}
+
+.productName {
+    margin-right: 58px;
+}
+
+.collapse{
+    background-color: #f6f6f6;
+    border-radius: 4px 4px 0px 0px;
+}
+
+.collapseHeader{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 88px;
+    padding: 0 16px;
+}
+
+.collapseTitleContainer{
+    display: flex;
+    align-items: center;
+}
+
+.collapseActionsContainer{
+    display: flex;
+    align-items: center;
+}
+
+.collapseActions{
+    button{
+        margin-left: 16px;
+        cursor: pointer;
+        background: $mainColor;
+        color: #fff;
+        padding: 10px;
+        border-radius: 50%;
+        border: none;
+
+        &:hover{
+            background: none;
+            padding: 9px;
+            border: 1px solid $textColor;
+            color: $textColor;
+        }
+    }
+}
+
+.collapseBody{
+    background-color: #fff;
+    border: 2px solid #f6f6f6;
+    padding: 24px 16px;
+    border-radius: 0px 0px 4px 4px;
+}
+
+.collapsed{
+    display: none;
+}
