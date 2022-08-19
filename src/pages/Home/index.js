@@ -1,28 +1,30 @@
 import React, { useState, useEffect, memo, useContext } from 'react';
-import { ProductList, Loading } from '../../components';
+import { ImageList, Loading } from '../../components';
 
-import ProductService from '../../services/ProductService';
+import ImageService from '../../services/ImageService';
 import { Store } from '../../store';
 
-const productService = new ProductService();
+const imageService = new ImageService();
 
 /*
   Lazy load & infinit scroll works fine with enough items as page size starter but runs into data sync issues after remove action so disabled until fixed
 */
-const Products = () => {
-  const [products, setProducts] = useState([]);
+const Images = () => {
+  const [images, setImages] = useState([]);
   const [page, setPage] = useState(1);
   const perPage = 8;
   const { state } = useContext(Store);
   const [loading, setLoading] = useState(false);
 
-  const getProducts = async () => {
+  const getImages = async () => {
     setLoading(true);
 
-    // const productsResponse = await productService.getProductsPerPage(perPage, page);
-    const productsResponse = await productService.getProducts();
-    if (productsResponse.success) {
-      setProducts(productsResponse.data);
+    // const imagesResponse = await imageService.getImagesPerPage(perPage, page);
+    const imagesResponse = await imageService.getImages({
+      involvedMaker: 'Rembrandt van Rijn'
+    });
+    if (imagesResponse.success) {
+      setImages(imagesResponse.data);
       setLoading(false);
     };
   };
@@ -38,12 +40,12 @@ const Products = () => {
   };
 
   /* useEffect(() => {
-    getProducts();
-  }, [page, state.productList]); */
+    getImages();
+  }, [page, state.images]); */
 
   useEffect(() => {
-    getProducts();
-  }, [state.productList]);
+    getImages();
+  }, [state.images]);
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
@@ -51,12 +53,14 @@ const Products = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  console.log('images:', images);
+
   return (
     <>
-      <ProductList products={products} />
-      {(loading && products.length > 0) && <Loading />}
+      <ImageList images={images} />
+      {(loading && images.length > 0) && <Loading />}
     </>
   );
 };
 
-export default memo(Products);
+export default memo(Images);

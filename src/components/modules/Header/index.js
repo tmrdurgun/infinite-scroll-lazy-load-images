@@ -2,21 +2,23 @@ import React from 'react';
 import styles from './style.module.scss';
 import { Link } from 'react-router-dom';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
+
 export const Header = () => {
 
   return (
     <div className={styles.header}>
-      <div className={styles.logo}>hepsiburada</div>
       <nav>
         <ul>
           <li>
-            <Link to={'/products'}>List</Link>
-          </li>
-          <li>
-            <Link to={'/products/add'}>Form</Link>
+            <Link to={'/'}> <FontAwesomeIcon icon={faChevronLeft} size="lg" /> </Link>
           </li>
         </ul>
       </nav>
+
+      <div className={styles.logo}>MUSEUM</div>
+
     </div>
   );
 };

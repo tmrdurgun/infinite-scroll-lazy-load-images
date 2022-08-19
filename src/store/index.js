@@ -2,21 +2,21 @@ import React, { createContext, useReducer } from 'react';
 
 import { reducer } from './reducers';
 
-import ProductService from '../services/ProductService';
-const productService = new ProductService();
+import ImageService from '../services/ImageService';
+const imageService = new ImageService();
 
 const initialState = {
-  productList: []
+  images: []
 };
 
 /*
-  Module pattern helps to fill productList with encapsulation and self provoke ability
+  Module pattern helps to fill images with encapsulation and self provoke ability
 */
 (async () => {
-  const products = await productService.getProducts();
+  const images = await imageService.getImages();
 
-  if (products) {
-    initialState.productList = products.data;
+  if (images) {
+    initialState.images = images.data;
   }
 })();
 

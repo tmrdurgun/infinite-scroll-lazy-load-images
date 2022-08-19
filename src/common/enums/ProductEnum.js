@@ -1,9 +1,9 @@
-export const ProductTypes = {
+export const ImageTypes = {
   'onlineLicence': 1,
   'standart': 2
 };
 
-export const ProductTypesLabel = {
+export const ImageTypesLabel = {
   1: 'Online Licence',
   2: 'Standart'
 };

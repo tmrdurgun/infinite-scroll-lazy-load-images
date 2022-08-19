@@ -1,5 +1,5 @@
 {
-  "name": "productmanagement",
+  "name": "imagemanagement",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -31,7 +31,7 @@
     ]
   },
   "browserslist": {
-    "production": [
+    "imageion": [
       ">0.2%",
       "not dead",
       "not op_mini all"
