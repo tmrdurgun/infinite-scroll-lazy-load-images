@@ -1,5 +1,5 @@
 import React, { useState, useEffect, memo, useContext } from 'react';
-import { ImageList, Loading } from '../../components';
+import { ImageList } from '../../components';
 
 import ImageService from '../../services/ImageService';
 import { Store } from '../../store';
@@ -14,10 +14,8 @@ const Images = () => {
   const [page, setPage] = useState(1);
   const perPage = 10;
   const { state } = useContext(Store);
-  const [loading, setLoading] = useState(false);
 
   const getImages = async () => {
-    setLoading(true);
 
     const imagesResponse = await imageService.getImages({
       involvedMaker: 'Rembrandt van Rijn',
@@ -27,7 +25,6 @@ const Images = () => {
 
     if (imagesResponse.success) {
       setImages(prev => [...prev, ...imagesResponse.data]);
-      setLoading(false);
     };
   };
 
@@ -56,7 +53,6 @@ const Images = () => {
   return (
     <>
       <ImageList images={images} />
-      {(loading && images.length > 0) && <Loading />}
     </>
   );
 };

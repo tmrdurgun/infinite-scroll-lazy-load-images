@@ -2,15 +2,28 @@ import React, { memo, useState, useContext } from 'react';
 
 import styles from './style.module.scss';
 
+import LazyLoad from 'react-lazyload';
+
+import { Placeholder } from '../../../components';
+
 const Image = (props) => {
   const { image } = props;
+  const [loaded, setLoaded] = useState(false);
 
+  function handleImageLoad() {
+    setLoaded(true);
+  }
   return (
     <>
       {image.showImage && <div className={`${styles.image} mb-15`}>
 
         <div className='mb-15'>
-          <img src={image.webImage.url} alt={image.title} />
+          {!loaded && <Placeholder />}
+
+          <LazyLoad>
+            <img className={!loaded ? styles.hidden : styles.visible} src={image.webImage.url} alt={image.title} onLoad={handleImageLoad} />
+          </LazyLoad>
+
         </div>
 
         <p className="text-bold">{image.longTitle}</p>
