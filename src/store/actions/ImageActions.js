@@ -1,6 +1,6 @@
-export const saveImages = (images, dispatch) => {
+export const selectImage = (value, dispatch) => {
   dispatch({
-    type: 'GET_IMAGES',
-    images,
+    type: 'SELECT_IMAGE',
+    value,
   });
 };

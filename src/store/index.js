@@ -2,23 +2,9 @@ import React, { createContext, useReducer } from 'react';
 
 import { reducer } from './reducers';
 
-import ImageService from '../services/ImageService';
-const imageService = new ImageService();
-
 const initialState = {
-  images: []
+  selectedImage: []
 };
-
-/*
-  Module pattern helps to fill images with encapsulation and self provoke ability
-*/
-(async () => {
-  const images = await imageService.getImages();
-
-  if (images) {
-    initialState.images = images.data;
-  }
-})();
 
 export const Store = createContext(initialState);
 

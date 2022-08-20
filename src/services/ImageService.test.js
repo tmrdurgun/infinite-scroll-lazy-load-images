@@ -4,7 +4,7 @@ const imageService = new ImageService();
 
 describe('IMAGE SERVICE', () => {
 
-  test('saveImages should work', async () => {
+  test('getImages should work', async () => {
     const images = await imageService.getImages();
     expect(images.data.length > 0).toBe(true);
   });

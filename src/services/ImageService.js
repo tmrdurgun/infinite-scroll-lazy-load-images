@@ -5,13 +5,15 @@ class ImageService {
 
   async getImages(params) {
     try {
-      const images = await fetch(`${this.baseUrl}collection?key=${process.env.REACT_APP_API_KEY}&${new URLSearchParams(params)}`);
+      const response = await fetch(`${this.baseUrl}collection?key=${process.env.REACT_APP_API_KEY}&${new URLSearchParams(params)}`);
 
-      if (!images) throw new Error('Images could not loaded!');
+      if (!response) throw new Error('Images could not loaded!');
+
+      const data = await response.json();
 
       return {
         success: true,
-        data: images.jsom()
+        data: data.artObjects
       };
 
     } catch (error) {
