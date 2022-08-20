@@ -12,19 +12,21 @@ const imageService = new ImageService();
 const Images = () => {
   const [images, setImages] = useState([]);
   const [page, setPage] = useState(1);
-  const perPage = 8;
+  const perPage = 10;
   const { state } = useContext(Store);
   const [loading, setLoading] = useState(false);
 
   const getImages = async () => {
     setLoading(true);
 
-    // const imagesResponse = await imageService.getImagesPerPage(perPage, page);
     const imagesResponse = await imageService.getImages({
-      involvedMaker: 'Rembrandt van Rijn'
+      involvedMaker: 'Rembrandt van Rijn',
+      ps: perPage,
+      p: page
     });
+
     if (imagesResponse.success) {
-      setImages(imagesResponse.data);
+      setImages(prev => [...prev, ...imagesResponse.data]);
       setLoading(false);
     };
   };
@@ -39,13 +41,9 @@ const Images = () => {
     }
   };
 
-  /* useEffect(() => {
-    getImages();
-  }, [page, state.images]); */
-
   useEffect(() => {
     getImages();
-  }, [state.images]);
+  }, [page]);
 
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
