@@ -18,15 +18,20 @@ const ImageList = ({ images }) => {
   const renderFactory = () => {
     if (images && images.length > 0) {
       return (
-        <div className={styles.images}>
-          {images.map((image, index) => (
-            <Image
-              key={index + 1}
-              image={image}
-              collapsed
-            />
-          ))}
-        </div>
+        <main className={styles.gallery}>
+          <ul className={styles.gallery__list}>
+            {images.map((image, index) => (
+              <li key={image.id}>
+                <Image
+                  image={image}
+                  collapsed
+                />
+              </li>
+
+            ))}
+          </ul>
+        </main>
+
       );
     }
 

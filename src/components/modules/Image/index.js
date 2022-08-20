@@ -9,7 +9,9 @@ const Image = (props) => {
     <>
       {image.showImage && <div className={`${styles.image} mb-15`}>
 
-        <div className='mb-15'>{image.webImage.url}</div>
+        <div className='mb-15'>
+          <img src={image.webImage.url} alt="" />
+        </div>
 
         <p className="text-bold">{image.longTitle}</p>
         <p>{image.productionPlaces[0]}</p>
