@@ -2,7 +2,7 @@ import ImageService from './ImageService';
 
 const imageService = new ImageService();
 
-describe('IMAGE SERVICE', () => {
+describe('IMAGE SERVICE TESTS', () => {
 
   test('getImages should work', async () => {
     const images = await imageService.getImages();
@@ -10,7 +10,3 @@ describe('IMAGE SERVICE', () => {
   });
 
 });
-
-
-
-

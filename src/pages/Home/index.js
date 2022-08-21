@@ -9,7 +9,7 @@ const imageService = new ImageService();
 /*
   Lazy load & infinit scroll works fine with enough items as page size starter but runs into data sync issues after remove action so disabled until fixed
 */
-const Images = () => {
+const Home = () => {
   const [images, setImages] = useState([]);
   const [page, setPage] = useState(1);
   const perPage = 10;
@@ -48,7 +48,7 @@ const Images = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  console.log('images:', images);
+  // console.log('images:', images);
 
   return (
     <>
@@ -57,4 +57,4 @@ const Images = () => {
   );
 };
 
-export default memo(Images);
+export default memo(Home);

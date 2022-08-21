@@ -19,7 +19,7 @@ const ImageList = ({ images }) => {
     if (images && images.length > 0) {
       return (
         <main className={styles.gallery}>
-          <ul className={styles.gallery__list}>
+          <ul className={styles.gallery__list} data-testid="gallery__list">
             {images.map((image, index) => (
               <li key={image.id}>
                 <Image
@@ -27,7 +27,6 @@ const ImageList = ({ images }) => {
                   collapsed
                 />
               </li>
-
             ))}
           </ul>
         </main>
