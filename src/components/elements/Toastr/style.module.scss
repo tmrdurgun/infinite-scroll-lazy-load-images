@@ -1,0 +1,17 @@
+@import '../../../styles/variables.scss';
+
+.Toastr{
+    position: fixed;
+    top: 25px;
+    right: 25px;
+    padding: 25px;
+    background-color: #fff;
+    border: 2px solid $mainColor;
+    border-radius: 4px;
+    animation: fadeIn 500ms ease-in;
+}
+
+@keyframes fadeIn {
+    0% { opacity: 0;}
+    100% { opacity: 1; }
+  }

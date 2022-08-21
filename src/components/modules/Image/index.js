@@ -6,16 +6,26 @@ import LazyLoad from 'react-lazyload';
 
 import { Placeholder } from '../../../components';
 
+import { Store } from '../../../store';
+
+import { selectImage } from '../../../store/actions';
+
 const Image = (props) => {
   const { image } = props;
   const [loaded, setLoaded] = useState(false);
+  const { dispatch } = useContext(Store);
 
   function handleImageLoad() {
     setLoaded(true);
   }
+
+  const handleSelectImage = async (selectedImage) => {
+    selectImage(selectedImage, dispatch);
+  };
+
   return (
     <>
-      {image.showImage && <div className={`${styles.image} mb-15`}>
+      {image.showImage && <div className={`${styles.image} mb-15 cursor-pointer`} onClick={() => handleSelectImage(image)}>
 
         <div className='mb-15'>
           {!loaded && <Placeholder />}
@@ -27,7 +37,7 @@ const Image = (props) => {
         </div>
 
         <p className="text-bold">{image.longTitle}</p>
-        <p>{image.productionPlaces[0]}</p>
+        <p>{image.ImageionPlaces ? image.ImageionPlaces[0] : ''}</p>
       </div>}
     </>
 

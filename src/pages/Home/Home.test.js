@@ -2,7 +2,6 @@ import { render, fireEvent, waitFor, screen, within, act } from '@testing-librar
 import '@testing-library/jest-dom';
 
 import Home from './';
-import { ImageList } from '../../components';
 
 describe('Home page tests', function () {
 

@@ -1,19 +1,17 @@
 import React, { useState, useEffect, memo, useContext } from 'react';
-import { ImageList } from '../../components';
+import { ImageList, Toastr } from '../../components';
 
 import ImageService from '../../services/ImageService';
 import { Store } from '../../store';
 
 const imageService = new ImageService();
 
-/*
-  Lazy load & infinit scroll works fine with enough items as page size starter but runs into data sync issues after remove action so disabled until fixed
-*/
 const Home = () => {
   const [images, setImages] = useState([]);
   const [page, setPage] = useState(1);
   const perPage = 10;
   const { state } = useContext(Store);
+  const [errorMessage, setErrorMessage] = useState();
 
   const getImages = async () => {
 
@@ -22,6 +20,8 @@ const Home = () => {
       ps: perPage,
       p: page
     });
+
+    if (!imagesResponse.success) setErrorMessage(imagesResponse.message);
 
     if (imagesResponse.success) {
       setImages(prev => [...prev, ...imagesResponse.data]);
@@ -49,9 +49,11 @@ const Home = () => {
   }, []);
 
   // console.log('images:', images);
+  console.log('selected image: ', state.selectedImage);
 
   return (
     <>
+      {errorMessage && <Toastr message={errorMessage} onClose={() => setErrorMessage(undefined)} />}
       <ImageList images={images} />
     </>
   );

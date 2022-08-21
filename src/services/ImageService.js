@@ -7,7 +7,7 @@ class ImageService {
     try {
       const response = await fetch(`${this.baseUrl}collection?key=${process.env.REACT_APP_API_KEY}&${new URLSearchParams(params)}`);
 
-      if (!response) throw new Error('Images could not loaded!');
+      if (!response) throw new Error('An Error Occured while retrieving images!');
 
       const data = await response.json();
 
